@@ -1,5 +1,5 @@
 # MDP
-Simulación de MDP sobre un agente
+Simulación de Markov decision process.
 
 ## Captura de la interfaz gráfica
 
