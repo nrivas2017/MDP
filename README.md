@@ -13,4 +13,4 @@ Simulación de MDP sobre un agente
 
 * **Nicolás Rivas** [nrivas2017](https://github.com/nrivas2017)
 * **Ignacio Ringler** [ringler0](https://github.com/ringler0)
-* **Francisco Giacomozzi** [aaaaaaaa](https://github.com/)
+* **Francisco Giacomozzi** [Giacomozzi7](https://github.com/Giacomozzi7)
