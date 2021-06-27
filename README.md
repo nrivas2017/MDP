@@ -2,7 +2,7 @@
 Simulación de Markov decision process.
 
 ## Captura de la interfaz gráfica
-
+Para iniciar la iteración apretar la tecla V
 ![Captura](images/interfaz.png)
 ## Construido con 🛠️
 

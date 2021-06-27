@@ -6,10 +6,10 @@ import time
 # VAR
 #---------------------------------------------------------------------
 
-nSIZE_TILE = 64
+nSIZE_Pos = 64
 
-nLOSA = 0
-nMURO = 1
+nPiso = 0
+nObstaculo = 1
 
 nEstado = -1
 lGo = lok = lp = ln = False
@@ -36,8 +36,8 @@ aDire  = [# x  y                  N
 # ARRAY MAPA NAVEGACION 
 #---------------------------------------------------------------------
 
-aINICIO = [01,00]
-aMETA   = [05,06]
+aINICIO = [1,0]
+aMETA   = [5,6]
 
 aMAPA =  [
           [1,0,1,1,1,1,1],
@@ -326,8 +326,8 @@ def Value_I():
 # PINTA Nodos Inicio y Meta 
 #---------------------------------------------------------------------
 def Pinta_INI_META():
-    scr.blit(img3,(aINICIO[0]*nSIZE_TILE,aINICIO[1]*nSIZE_TILE))
-    scr.blit(img4,(aMETA[0]*nSIZE_TILE  ,aMETA[1]*nSIZE_TILE  ))
+    scr.blit(img3,(aINICIO[0]*nSIZE_Pos,aINICIO[1]*nSIZE_Pos))
+    scr.blit(img4,(aMETA[0]*nSIZE_Pos  ,aMETA[1]*nSIZE_Pos  ))
     return
 
 #---------------------------------------------------------------------
@@ -351,10 +351,10 @@ def Pinta_aMAPA():
     nPos_Y = 0
     for nF in range(0,7):
         for nC in range(0,7):
-            if aMAPA[nF][nC] == nLOSA: #0
+            if aMAPA[nF][nC] == nPiso: #0
                 scr.blit(img1,(nPos_X,nPos_Y))
                 nPos_X += 64
-            if aMAPA[nF][nC] == nMURO:
+            if aMAPA[nF][nC] == nObstaculo:
                 scr.blit(img2,(nPos_X,nPos_Y))
                 nPos_X += 64
         nPos_X = 0
@@ -367,11 +367,11 @@ def Pinta_aMAPA():
 def Pinta_Cursor(nX=0,nY=0):
     if nX >=0 and nX <= 448:
        if nY >=0 and nY <= 448:
-          nP_X = nX_M / nSIZE_TILE
-          nP_XX = nP_X * nSIZE_TILE
-          nP_Y = nY_M / nSIZE_TILE
-          nP_YY = nP_Y * nSIZE_TILE
-          if aMAPA[nP_Y][nP_X] != nMURO: # Pinta Cursor.-
+          nP_X = nX_M / nSIZE_Pos
+          nP_XX = nP_X * nSIZE_Pos
+          nP_Y = nY_M / nSIZE_Pos
+          nP_YY = nP_Y * nSIZE_Pos
+          if aMAPA[nP_Y][nP_X] != nObstaculo: # Pinta Cursor.-
              scr.blit(img5,(nP_XX,nP_YY))
     return
 
@@ -384,21 +384,21 @@ def Pinta_Poli():
             for nC in range(0,7):
                 if aSTATE[nF][nC] >= nCONOCIDO:
                     if aP[aSTATE[nF][nC]] == 'N':
-                        scr.blit(img6,(nC*nSIZE_TILE,nF*nSIZE_TILE))
+                        scr.blit(img6,(nC*nSIZE_Pos,nF*nSIZE_Pos))
                         textsurface = myfont.render("{:.5f}".format(JOpt[aSTATE[nF][nC]]), False, (0, 0, 0))
-                        scr.blit(textsurface,(nC*nSIZE_TILE+8,nF*nSIZE_TILE+25))
+                        scr.blit(textsurface,(nC*nSIZE_Pos+8,nF*nSIZE_Pos+25))
                     if aP[aSTATE[nF][nC]] == 'S':
-                        scr.blit(img7,(nC*nSIZE_TILE,nF*nSIZE_TILE))
+                        scr.blit(img7,(nC*nSIZE_Pos,nF*nSIZE_Pos))
                         textsurface = myfont.render("{:.5f}".format(JOpt[aSTATE[nF][nC]]), False, (0, 0, 0))
-                        scr.blit(textsurface,(nC*nSIZE_TILE+8,nF*nSIZE_TILE+25))
+                        scr.blit(textsurface,(nC*nSIZE_Pos+8,nF*nSIZE_Pos+25))
                     if aP[aSTATE[nF][nC]] == 'E':
-                        scr.blit(img8,(nC*nSIZE_TILE,nF*nSIZE_TILE))
+                        scr.blit(img8,(nC*nSIZE_Pos,nF*nSIZE_Pos))
                         textsurface = myfont.render("{:.5f}".format(JOpt[aSTATE[nF][nC]]), False, (0, 0, 0))
-                        scr.blit(textsurface,(nC*nSIZE_TILE+8,nF*nSIZE_TILE+25))
+                        scr.blit(textsurface,(nC*nSIZE_Pos+8,nF*nSIZE_Pos+25))
                     if aP[aSTATE[nF][nC]] == 'O':
-                        scr.blit(img9,(nC*nSIZE_TILE,nF*nSIZE_TILE))
+                        scr.blit(img9,(nC*nSIZE_Pos,nF*nSIZE_Pos))
                         textsurface = myfont.render("{:.5f}".format(JOpt[aSTATE[nF][nC]]), False, (0, 0, 0))
-                        scr.blit(textsurface,(nC*nSIZE_TILE+8,nF*nSIZE_TILE+25))
+                        scr.blit(textsurface,(nC*nSIZE_Pos+8,nF*nSIZE_Pos+25))
     return
 
 #---------------------------------------------------------------------
@@ -445,9 +445,9 @@ while not lGo:
             Set_Reward(aSTATE[aMETA[1]][aMETA[0]])
             Value_I()   
             lp =  lp ^ True
-            print "\nRecompensas ="
-            print Rw
-            print "\nMejor Politica= "
-            print aP 
-            print "\nJ Optimo="
-            print JOpt
+            print ("\nRecompensas =")
+            print (Rw)
+            print ("\nMejor Politica= ")
+            print (aP )
+            print ("\nJ Optimo=")
+            print (JOpt)
