@@ -1,8 +1,10 @@
 # MDP
 Simulación de Markov decision process.
 
+## Intrucción
+Para iniciar la iteración dentro de la interfaz apretar la tecla V
+
 ## Captura de la interfaz gráfica
-Para iniciar la iteración apretar la tecla V
 ![Captura](images/interfaz.png)
 ## Construido con 🛠️
 
